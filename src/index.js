@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
-import App from './App';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Register from './pages/register';
+import CreatePost from './pages/createPost';
+import Profile from './pages/profile';
 import reportWebVitals from './reportWebVitals';
+
+export default function Layout() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />}> </Route>
+        <Route path="/home" element={<Home />}> </Route>
+        <Route path="/register" element={<Register />}> </Route>
+        <Route path="/post" element={<CreatePost/>}> </Route>
+        <Route path="/profile" element={<Profile/>}> </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Layout />
   </React.StrictMode>
 );
 
