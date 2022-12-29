@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Register from './pages/register';
 import CreatePost from './pages/createPost';
 import Profile from './pages/profile';
+import Friends from './pages/friends';
 import reportWebVitals from './reportWebVitals';
 
 export default function Layout() {
@@ -18,6 +19,7 @@ export default function Layout() {
         <Route path="/register" element={<Register />}> </Route>
         <Route path="/post" element={<CreatePost/>}> </Route>
         <Route path="/profile" element={<Profile/>}> </Route>
+        <Route path="/friends" element={<Friends/>}> </Route>
       </Routes>
     </BrowserRouter>
   );
