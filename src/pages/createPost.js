@@ -19,7 +19,7 @@ let data = {
  }
 
 createPost(data).then(res => {
-  if( res.status !== 200){
+  if( res.status !== 201){
    alert(res.data?.error)
   }
 })

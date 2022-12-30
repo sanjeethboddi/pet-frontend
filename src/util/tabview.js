@@ -33,9 +33,9 @@ export default function TabView({selectedTab}) {
     if(newValue === '1'){
       navigate('/home')
     }else if(newValue === '2'){
-        navigate('/post')
+        navigate('/create_post')
     }else if(newValue === '3'){
-        navigate('/profile')
+        navigate('/userprofile')
     }else if(newValue === '4'){
       navigate('/friends')
   }   

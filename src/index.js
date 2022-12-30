@@ -17,8 +17,8 @@ export default function Layout() {
         <Route path="/" element={<Login />}> </Route>
         <Route path="/home" element={<Home />}> </Route>
         <Route path="/register" element={<Register />}> </Route>
-        <Route path="/post" element={<CreatePost/>}> </Route>
-        <Route path="/profile" element={<Profile/>}> </Route>
+        <Route path="/create_post" element={<CreatePost/>}> </Route>
+        <Route path="/userprofile" element={<Profile/>}> </Route>
         <Route path="/friends" element={<Friends/>}> </Route>
       </Routes>
     </BrowserRouter>

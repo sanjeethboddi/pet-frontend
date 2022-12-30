@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const url = "https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io";
+export const url = "https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io";
 const auth_service = url+"/auth";
+
 export async function login(username, password) {
                 try {
                     let res = await axios({
@@ -137,5 +138,47 @@ export async function getFollowersList(){
        return {data:err.response.data, status:err.response.status};
     }
 }
+
+export async function getUserFeed(){
+    const token = window.localStorage.getItem('token') 
+    const uid = window.localStorage.getItem('uid')
+   try {
+       let res = await axios({
+           method: 'GET',
+           url: url+'/feed/getFeedForUser/'+uid +'/' +token,
+       })
+        return {data:res.data, status:res.status}
+    }
+    catch (err) {
+       return {data:err.response.data, status:err.response.status};
+    }
+}
+
+export async function getPostData(data){
+   try {
+       let res = await axios({
+           method: 'POST',
+           url: url+'/post/getPosts',
+           data,
+       })
+        return {data:res.data, status:res.status}
+    }
+    catch (err) {
+       return {data:err.response.data, status:err.response.status};
+    }
+}
+
+export async function getPostImage(postID){
+    try {
+        let res = await axios({
+            method: 'GET',
+            url: url+'/post/getPostImage?postID='+ postID,
+        })
+         return {data:res.data, status:res.status}
+     }
+     catch (err) {
+        return {data:err.response.data, status:err.response.status};
+     }
+ }
 
 
