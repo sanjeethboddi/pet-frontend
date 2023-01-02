@@ -21,21 +21,28 @@ export default function TabView({selectedTab}) {
         if(res.status !== 200){
             alert("Cant find user")
         } else if(res.status === 200){
-          alert("User found")
+          window.localStorage.setItem('userProfile', JSON.stringify(res.data))
+          navigate('/profile/'+ friend)
             
         }
-
     })
 }
 
   const handleChange = (newValue) => {
     setValue(newValue);
     if(newValue === '1'){
-      navigate('/home')
+      navigate('/')
     }else if(newValue === '2'){
         navigate('/create_post')
     }else if(newValue === '3'){
-        navigate('/userprofile')
+      getProfile(localStorage.getItem('uid')).then(res => {
+        if(res.status !== 200){
+            alert("Error while fetching profile")
+        } else if(res.status === 200){
+          window.localStorage.setItem('myProfile', JSON.stringify(res.data))
+          navigate('/userprofile')  
+        }
+    })
     }else if(newValue === '4'){
       navigate('/friends')
   }   

@@ -54,7 +54,7 @@ function Register() {
       <div><TextField id="outlined-basic" type='datetime-local'label="Date of birth" variant="outlined" style={{width:"500px"}} value={value} onChange={(event)=> handleChange(event.target.value)}/></div>
       <div><TextField id="outlined-basic" label="Address" variant="outlined" style={{width:"500px"}} onChange={(event)=> setAddress(event.target.value)}/></div>
       <div><TextField id="outlined-basic" label="Username" variant="outlined" style={{width:"500px"}} onChange={(event)=> setUsername(event.target.value)}/></div>
-      <div><TextField id="outlined-basic" label="Password" variant="outlined" style={{width:"500px"}} onChange={(event)=> setPassword(event.target.value)}/></div>
+      <div><TextField id="outlined-basic" label="Password" variant="outlined" style={{width:"500px"}} onChange={(event)=> setPassword(event.target.value)} type="password"/></div>
       <div>      
         <span><Button variant="contained" onClick={() => handleRegister()}>Register</Button></span>
       </div>

@@ -22,6 +22,11 @@ createPost(data).then(res => {
   if( res.status !== 201){
    alert(res.data?.error)
   }
+  else{
+    alert('Post created successfully')
+    navigate('/')
+  }
+
 })
 
 

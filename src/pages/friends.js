@@ -20,6 +20,9 @@ function Friends() {
 const navigate = useNavigate();
 const [friend, setFriend] = React.useState('');
 const [friendsList, setFriendsList] = React.useState([]);
+const [filterSelected, setFilterSelected] = React.useState("followers");
+const [followersLabel, setFollowersLabel] = React.useState("followers(0)");
+const [followingLabel, setFollowingLabel] = React.useState("following(0)");
 const [followersList, setFollowersList] = React.useState([]);
 const [followingList, setFollowingList] = React.useState([]);
 
@@ -32,22 +35,12 @@ React.useEffect(() => {
 setFriendsList(followersList)
 },[followersList]);
 
-  
-  function handleFollow() {
-    followUser(friend).then(res => {
-        if(res.status !== 200){
-            alert("Cant follow user")
-        } else if(res.status === 200){
-            alert("User followed")
-        }
-
-    })
-} 
 
 function getFollowers() {
     getFollowersList().then(res => {
         if(res.status === 200){
             setFollowersList(res.data)
+            setFollowersLabel('Followers(' +res?.data?.length+ ')')
             console.log(res.data)
         }
 
@@ -58,6 +51,7 @@ function getFollowing() {
     getFollowingList().then(res => {
         if(res.status === 200){
             setFollowingList(res.data)
+            setFollowingLabel('Following(' +res?.data?.length+ ')')
             console.log(res.data)
         }
 
@@ -70,8 +64,10 @@ function handleChip(selection) {
         setFriendsList(followersList.concat(followingList))
     } else if(selection === "2"){
         setFriendsList(followersList)
+        setFilterSelected("followers")
     } else if(selection === "3"){
         setFriendsList(followingList)
+        setFilterSelected("following")
     }
 
 }
@@ -85,8 +81,11 @@ function handleChip(selection) {
         <br/>
         <Stack direction="row" spacing={1}>
         <span style={{marginLeft: "20px"}}><Typography variant="h6" > Filter: </Typography></span>
-         <Chip label="Followers" variant="outlined" onClick={() =>handleChip("2")} />
-         <Chip label="Following" variant="outlined" onClick={() =>handleChip("3")} />
+        {(filterSelected === "followers") && (<Chip label={followersLabel} color="primary" variant="outlined" onClick={() =>handleChip("2")} />) } 
+        {(filterSelected === "followers") && (<Chip label={followingLabel} variant="outlined" onClick={() =>handleChip("3")} />)} 
+        {(filterSelected === "following") && (<Chip label={followersLabel}  variant="outlined" onClick={() =>handleChip("2")} />)}
+        {(filterSelected === "following") && (<Chip label={followingLabel} color="primary" variant="outlined" onClick={() =>handleChip("3")} />)}
+        
 
         </Stack>
         <TableContainer component={Paper}>
@@ -100,7 +99,6 @@ function handleChip(selection) {
               <TableCell component="th" scope="row">
                 {row}
               </TableCell>
-              {/* <TableCell align="right"><Button variant="contained" onClick={()=>handleFollow()} >FOLLOW</Button></TableCell> */}
             </TableRow>
           ))}
         </TableBody>

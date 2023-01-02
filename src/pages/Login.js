@@ -23,7 +23,7 @@ function handleRegister() {
       console.log(res);
       if(res.status === 200){
         window.localStorage.setItem('token', res.data?.access_token);
-        navigate('/home')
+        navigate('/')
       } else {
         alert(res.data?.detail)
       }
@@ -43,7 +43,7 @@ function handleRegister() {
 
       <div><Typography variant="h2" > Login</Typography></div>
       <div><TextField id="outlined-basic" label="Username" variant="outlined" onChange={(event)=> setUsername(event.target.value)} style={{width:"500px"}}/></div>
-      <div><TextField id="outlined-basic" label="Password" variant="outlined"  onChange={(event)=> setPassword(event.target.value)} style={{width:"500px"}} /></div>
+      <div><TextField id="outlined-basic" label="Password" variant="outlined" type="password" onChange={(event)=> setPassword(event.target.value)} style={{width:"500px"}} /></div>
       <div>      
         <span style={{margin: '75px'}}><Button variant="text" onClick={() => handleRegister()}>Register</Button></span>
         <span style={{margin: '75px'}}><Button variant="contained" onClick={() => handleLogin()}>Login</Button></span>

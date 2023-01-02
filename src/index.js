@@ -8,18 +8,20 @@ import Register from './pages/register';
 import CreatePost from './pages/createPost';
 import Profile from './pages/profile';
 import Friends from './pages/friends';
+import FriendProfile from './pages/friendProfile';
 import reportWebVitals from './reportWebVitals';
 
 export default function Layout() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}> </Route>
-        <Route path="/home" element={<Home />}> </Route>
+        <Route path="/" element={<Home />}> </Route>
+        <Route path="/login" element={<Login />}> </Route>
         <Route path="/register" element={<Register />}> </Route>
         <Route path="/create_post" element={<CreatePost/>}> </Route>
         <Route path="/userprofile" element={<Profile/>}> </Route>
         <Route path="/friends" element={<Friends/>}> </Route>
+        <Route path="/profile/:uid" element={<FriendProfile/>}> </Route>
       </Routes>
     </BrowserRouter>
   );

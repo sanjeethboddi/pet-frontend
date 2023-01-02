@@ -15,7 +15,7 @@ export default function Postcard({title, image, name, date}) {
   console.log({title, image, name, date})
   return (
     <div style={{paddingLeft: '500px'}}>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 600 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: blueGrey[500] }} aria-label="recipe">
@@ -27,7 +27,7 @@ export default function Postcard({title, image, name, date}) {
       />
       <CardMedia
         component="img"
-        height="194"
+        height="350"
         image={image}
         alt={title}
       />

@@ -1,13 +1,12 @@
 import axios from 'axios';
 
 export const url = "https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io";
-const auth_service = url+"/auth";
 
 export async function login(username, password) {
                 try {
                     let res = await axios({
                         method: 'POST',
-                        url: auth_service + '/login',
+                        url: url + '/auth/login',
                         data: {
                             username: username,
                             password: password
@@ -28,7 +27,7 @@ export async function register(username, password) {
     try {
         let res = await axios({
             method: 'POST',
-            url: auth_service+'/signup',
+            url: url + '/auth/signup',
             data: {
                 username: username,
                 password: password
@@ -55,6 +54,23 @@ export async function createProfile(data) {
      catch (err) {
         return {data:err.response.data, status:err.response.status};
      }
+}
+
+export async function updateProfile(data) {
+    const token = window.localStorage.getItem('token')
+    const uid = window.localStorage.getItem('uid')
+   try {
+       let res = await axios({
+           method: 'PUT',
+           url: url+'/profile/'+ uid +'/'+token,
+           data, 
+       })
+    
+        return {data:{}, status:res.status}
+    }
+    catch (err) {
+       return {data:err.response.data, status:err.response.status};
+    }
 }
 
 export async function createPost(data) {
@@ -108,6 +124,25 @@ export async function followUser(friendId) {
        return {data:err.response.data, status:err.response.status};
     }
 }
+export async function unfollowUser(friendId) {
+    const token = window.localStorage.getItem('token') 
+    const uid = window.localStorage.getItem('uid')
+   try {
+       let res = await axios({
+           method: 'PUT',
+           url: url+'/graph/unfollowUser/'+token,
+           data: {
+            uid: uid,
+            uid2: friendId
+           }, 
+       })
+    
+        return {data:res.data, status:res.status}
+    }
+    catch (err) {
+       return {data:err.response.data, status:err.response.status};
+    }
+}
 
 export async function getFollowingList(){
     const uid = window.localStorage.getItem('uid')
@@ -129,7 +164,7 @@ export async function getFollowersList(){
    try {
        let res = await axios({
            method: 'GET',
-           url: url+'/graph/getFollowingList/'+uid,
+           url: url+'/graph/getFollowersList/'+uid,
        })
     
         return {data:res.data, status:res.status}
@@ -180,5 +215,34 @@ export async function getPostImage(postID){
         return {data:err.response.data, status:err.response.status};
      }
  }
+
+
+ export async function verifyUserToken(token){
+    try {
+        let res = await axios({
+            method: 'POST',
+            url: url+'/auth/verify/'+token,
+        })
+         return {data:res.data, status:res.status}
+     }
+     catch (err) {
+        return {data:err.response.data, status:err.response.status};
+     }
+ }
+
+ export async function checkFollow(userProfileID){
+    const uid = window.localStorage.getItem('uid')
+    try {
+        let res = await axios({
+            method: 'GET',
+            url: url+'/graph/checkFollow/'+uid+ '/'+userProfileID,
+        })
+         return {data:res.data, status:res.status}
+     }
+     catch (err) {
+        return {data:err.response.data, status:err.response.status};
+     }
+ }
+
 
 
