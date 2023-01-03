@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const url = "https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io";
+export const url = "https://spacepets.me";
 
 export async function login(username, password) {
                 try {
