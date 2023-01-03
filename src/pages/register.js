@@ -26,6 +26,7 @@ function Register() {
             window.localStorage.setItem('token', LoginRes.data?.access_token);
             createProfile({uid: username, displayName: firstName + ' ' + lastName, dateOfBirth: value, address: address, petsList:[]}).then((res) => {
               // navigate('/home')
+              alert(res.data)
             });            
             
           } else {
