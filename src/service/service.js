@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const url = "https://spacepets.me";
+export const url = "https://sanjeeth.me";
 
 export async function login(username, password) {
                 try {
